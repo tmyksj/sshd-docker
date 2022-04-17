@@ -2,7 +2,7 @@ name: Create and publish a Docker image
 
 on:
   schedule:
-    - cron: '0 0 * * 0'
+    - cron: '0 0 * * *'
 
 env:
   REGISTRY: ghcr.io
@@ -33,11 +33,15 @@ jobs:
         uses: docker/metadata-action@v3
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          labels: |
+            org.opencontainers.image.version=v8.4p1
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
           context: .
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: |
+            ghcr.io/tmyksj/sshd-docker:latest
+            ghcr.io/tmyksj/sshd-docker:v8.4p1
           labels: ${{ steps.meta.outputs.labels }}
