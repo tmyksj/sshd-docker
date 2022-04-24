@@ -42,6 +42,5 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/tmyksj/sshd-docker:latest
             ghcr.io/tmyksj/sshd-docker:v8.4p1
           labels: ${{ steps.meta.outputs.labels }}
