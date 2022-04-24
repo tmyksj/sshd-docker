@@ -1,4 +1,4 @@
-FROM buildpack-deps:bullseye
+FROM buildpack-deps:bookworm
 
 RUN set -ex; \
     apt-get update; \
